@@ -1,0 +1,41 @@
+plugins {
+    id 'java'
+    id 'checkstyle'
+}
+
+group 'checkstyleplugin'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+checkstyle {
+    toolVersion = "8.17"
+}
+
+task("checkstyleFirst", type: Checkstyle) {
+    configFile file("checkstyle.xml")
+
+    source 'src/main/java'
+
+    include '**/*.java'
+
+    classpath = files()
+
+    configProperties.checkstyleCacheFile = file("${project.buildDir}/cachefileFirst").absolutePath
+}
+
+task("checkstyleSecond", type: Checkstyle) {
+    configFile file("checkstyle.xml")
+
+    source 'src/main/java'
+
+    include '**/*.java'
+
+    classpath = files()
+
+    configProperties.checkstyleCacheFile = file("${project.buildDir}/cachefileSecond").absolutePath
+}
