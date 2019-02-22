@@ -25,7 +25,7 @@ task("checkstyleFirst", type: Checkstyle) {
 
     classpath = files()
 
-    configProperties.checkstyleCacheFile = file("${project.buildDir}/cachefileFirst").absolutePath
+    configProperties = [checkstyleCacheFile: file("${project.buildDir}/cachefileFirst").absolutePath]
 }
 
 task("checkstyleSecond", type: Checkstyle) {
@@ -37,5 +37,5 @@ task("checkstyleSecond", type: Checkstyle) {
 
     classpath = files()
 
-    configProperties.checkstyleCacheFile = file("${project.buildDir}/cachefileSecond").absolutePath
+    configProperties = [checkstyleCacheFile:file("${project.buildDir}/cachefileSecond").absolutePath]
 }
